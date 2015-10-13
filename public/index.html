@@ -49,28 +49,12 @@
     <!-- <main ng-view></main> -->
     <script src="js/packed.js"></script>
     <main class="previews" ng-controller="GistController as gist">
-      <article>
-        <h1>{{gist.info[0].title}}</h1>
-        <p>{{gist.info[0].description}}</p>
+      <article ng-repeat="g in gist.info">
+        <h1>{{g.title}}</h1>
+        <p>{{g.description}}</p>
         <ul>
-          <li>By {{gist.info[0].author}}</li>
-          <li>Last updated on {{gist.info[0].date | date: 'MMM dd, yyyy'}}</li>
-        </ul>
-      </article>
-      <article>
-        <h1>{{gist.info[1].title}}</h1>
-        <p>{{gist.info[1].description}}</p>
-        <ul>
-          <li>By {{gist.info[1].author}}</li>
-          <li>Last updated on {{gist.info[1].date | date: 'MMM dd, yyyy'}}</li>
-        </ul>
-      </article>
-      <article>
-        <h1>{{gist.info[2].title}}</h1>
-        <p>{{gist.info[2].description}}</p>
-        <ul>
-          <li>By {{gist.info[2].author}}</li>
-          <li>Last updated on {{gist.info[2].date | date: 'MMM dd, yyyy'}}</li>
+          <li>By {{g.author}}</li>
+          <li>Last updated on {{g.date | date: 'MMM dd, yyyy'}}</li>
         </ul>
       </article>
     </main>
