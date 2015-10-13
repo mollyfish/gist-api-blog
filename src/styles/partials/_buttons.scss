@@ -1,0 +1,44 @@
+.btn {
+  font-family: $main-font-medium;
+  display: inline-block;
+  padding: 0.75em 1em;
+  border: 1px solid $border-color-med;
+  border-radius: 0.25em; 
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.btn__text {
+  text-transform: uppercase;
+  width: 10em;
+}
+.btn__number {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.btn--dark {
+  background-color: $background-color-dark;
+  color: $text-color-light;
+  &:hover {
+    background-color: $background-color-light;
+    color: $text-color-dark;
+  }
+}
+.btn--light {
+  background-color: $background-color-light;
+  color: $text-color-dark;
+  &:hover {
+    background-color: $background-color-dark;
+    color: $text-color-light;
+  }
+}
+.btn--theme {
+  background-color: $background-color-light;
+  color: $text-color-theme;
+  border: 1px solid $border-color-light;
+  &:hover {
+    background-color: $background-color-theme;
+    color: $text-color-light;
+  }
+}

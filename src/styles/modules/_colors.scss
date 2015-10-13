@@ -1,0 +1,19 @@
+$color1: #000;
+$color2: lighten($color1, 60%);
+$color3: #fff;
+$color4: #97f1e7;
+
+$text-color-dark: $color1;
+$text-color-med: $color2;
+$text-color-light: $color3;
+$text-color-theme: $color4;
+
+$background-color-dark: $color1;
+$background-color-med: $color2;
+$background-color-light: $color3;
+$background-color-theme: $color4;
+
+$border-color-dark: $color1;
+$border-color-med: $color2;
+$border-color-light: $color3;
+$border-color-theme: $color4;

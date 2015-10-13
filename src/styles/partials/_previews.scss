@@ -1,0 +1,59 @@
+.previews {
+  @include flex-container(flex,column,nowrap,center,center,center);
+  margin: 0 20% 2em 20%;
+  padding: 2em 0;
+  article {
+    width: 100%;
+    border-bottom: 1px solid $border-color-med;
+    padding: 2em 0;
+  }
+  h1 {
+    font-family: $main-font-regular;
+    font-size: 200%;
+    margin-bottom: 1em;
+  }
+  p {
+    font-family: $main-font-regular;
+    font-size: 100%;
+    line-height: 1.7;
+    margin: 0 0 2em 0;
+  }
+  .post-data {
+    @include flex-container(flex,row,wrap,space-between,center,center);
+  }
+  .btn {
+    width: 100%;
+    margin-top: 1em;
+    &.btn--light {
+      width: 15em;
+      margin-top: 1em;
+    }
+    @include breaks(desktop) {
+      width: 10em;
+      margin-top: 0;
+    }
+  }
+  button[ng-click="vm.delete(post)"] {
+    font-size: 30%;
+  }
+  ul {
+    @include flex-container(flex,row,wrap,center,center,center);
+  }
+  li {
+    margin: 0.5em 1em;
+    display: inline;
+  }
+  li:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    bottom: 0.25em;
+    right: 1em;
+    @include breaks(desktop) {
+      content: ".";
+    }
+  }
+  li:first-child:before {
+    content: "";
+  }
+}

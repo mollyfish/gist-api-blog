@@ -1,0 +1,18 @@
+.hero-box {
+  padding: 2em 10% 2em 8%;
+  @include breaks(desktop) {
+    padding-right: 40%;
+  }
+  background-color: $background-color-theme;
+  h1 {
+    font-family: $accent-font-regular;
+    font-size: 200%;
+    margin-bottom: 1em;
+  }
+  p {
+    font-family: $accent-font-light;
+    font-size: 130%;
+    line-height: 1.7;
+  }
+
+}

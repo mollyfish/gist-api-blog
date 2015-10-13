@@ -1,0 +1,32 @@
+.contact {
+  // padding-bottom: 0.5em;
+  @include flex-container(flex,row,wrap,space-around,center,center);
+  text-align: center;
+  .connection-links {
+    margin: 1em 2em;
+    @include breaks(desktop) {
+      margin: 0 1em;
+    }
+  }
+}
+.contact__method {
+  margin: 2em 1em;
+  line-height: 1.5;
+  @include breaks(desktop) {
+    text-align: left;
+  }
+  a[href="tel:6624076792"],
+  a[href="mailto:contact@intell.com"] {
+    display: block;
+    text-align: center;
+    &:hover {
+      color: $text-color-theme;
+    }
+    @include breaks(desktop) {
+      text-align: left;
+    }
+  }
+}
+address a:hover {
+  color: $text-color-theme;
+}

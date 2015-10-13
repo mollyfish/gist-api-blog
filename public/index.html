@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="blog">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gist Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="styles/app.css">
+  </head>
+  <body>
+    <header>
+      <section>
+        <h1>intelly</h1>
+        <nav>
+          <label for="show-menu">
+            <span class="icon-menu3"></span>
+          </label>
+          <input type="checkbox" id="show-menu">
+          <ul>
+            <li><a href="#/">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li><a href="#/">Blog</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Shortcodes</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+    <section class="hero-box"> 
+      <h1>Blog</h1>
+      <p>The secular cooling that must someday overtake our planet has already gone far indeed with our neighbour. Its physical condition is still largely a mystery, but we know now that even in its equatorial</p>
+    </section>
+    <nav class="secondary-nav">
+      <div class="secondary-nav__justify-L">
+        <a href="#" onclick=printout()>Home</a>
+        <a href="#/">Blog</a>
+      </div>
+      <div class="secondary-nav__justify-R">
+        <p>Share</p>
+        <a href="http://www.twitter.com" class="icon-twitter secondary-nav__icon"></a>
+        <a href="http://www.facebook.com" class="icon-facebook secondary-nav__icon"></a>
+        <a href="https://plus.google.com/" class="icon-google-plus secondary-nav__icon"></a>
+        <a href="http://www.pinterest.com" class="icon-pinterest secondary-nav__icon"></a>
+      </div>
+    </nav>
+    <!-- <main ng-view></main> -->
+    <script src="js/packed.js"></script>
+    <main class="previews" ng-controller="GistController as gist">
+      <h1>{{gist.info.title}}</h1>
+      <p>{{gist.info.description}}</p>
+      <ul>
+        <li>By {{gist.info.author}}</li>
+        <li>Last updated on {{gist.info.date | date: 'MMM dd, yyyy'}}</li>
+      </ul>
+    </main>
+
+
+
+    <section class="feature-box">
+      <h1>Serene in their assurance of their empire over matter</h1>
+      <p>No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man’s and yet as more</p>
+      <a class="btn btn__text btn--theme">Contact Now</a>
+      <a class="btn btn__text btn--theme">Learn More</a>
+    </section> 
+    <aside class="contact"> 
+      <address class="contact__method"><a href="https://goo.gl/maps/C4Q1FUpTdJx">2319 Hilltop Haven Drive<br />Upper Greenwood Lake, NJ 07421</a></address>
+      <div class="contact__method">
+        <a href="tel:6624076792">662-407-6792</a>
+        <a href="mailto:contact@intell.com">contact@intell.com</a>
+      </div>
+      <div class="contact__method">
+        <a href="https://twitter.com/" class="connection-links connection-links__text">
+          <span class="icon-twitter connection-links__icon"></span>Follow Us
+        </a>
+        <a href="https://www.facebook.com/" class="connection-links connection-links__text">
+          <span class="icon-facebook connection-links__icon"></span>Like Us
+        </a>
+        <a href="https://www.linkedin.com/" class="connection-links connection-links__text">
+          <span class="icon-linkedin connection-links__icon"></span>Connect
+        </a>
+      </div>
+    </aside> 
+    <footer>
+      <p>&#169 Intelly LLC</p>
+      <ul>
+        <li>Terms of use</li>
+        <li>Privacy Policy </li>
+        <li>Contact</li>
+        <li>Support</li>
+      </ul>
+    </footer>
+  </body>
+</html>

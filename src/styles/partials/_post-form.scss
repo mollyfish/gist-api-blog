@@ -1,0 +1,17 @@
+.post-form {
+  @include flex-container(flex,column,nowrap,flex-start,flex-start,flex-start);
+  margin: 0 20% 2em 20%;
+  padding: 2em 0;
+  text-align: left;
+  .btn {
+    width: 100%;
+    margin-top: 1em;
+    @include breaks(desktop) {
+      width: 10em;
+      margin-top: 0;
+    }
+  }
+  textarea {
+    width: 100%;
+  }
+}

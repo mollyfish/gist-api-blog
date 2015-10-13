@@ -1,0 +1,36 @@
+.connection-links {
+  @include flex-container(inline-flex,row,nowrap,center,center,center);
+  position: relative;
+  width: 8em;
+  height: 8em;
+  border: 1px solid $border-color-med;
+  border-radius: 50%;
+  &:hover {
+    background-color: $background-color-theme;
+    color: $text-color-light;
+    .connection-links__icon:before {
+      background-color: $background-color-light;
+      color: $text-color-dark;
+    }
+  }
+}
+.connection-links__text {
+  font-family: $main-font-bold;
+  text-transform: uppercase;
+}
+.connection-links__icon {
+  color: red;
+}
+.connection-links__icon:before {
+  @include flex-container(flex,row,nowrap,center,center,center);
+  position: absolute;
+  top: -0.4em;
+  left: -0.4em;
+  border: 1px solid $border-color-dark;
+  border-radius: 50%;
+  width: 35%;
+  height: 35%;
+  font-size: 120%;  
+  color: $text-color-light;
+  background-color: $background-color-dark;
+}
