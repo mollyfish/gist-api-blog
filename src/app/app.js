@@ -38,12 +38,12 @@ require('angular-route');
         post.files = [];
         for (file in data[i].files) {
           var filename = data[i].files[file].filename;
-          console.log(filename);
+          // console.log(filename);
           post.files.push(filename);
         }
         // console.dir(post.files);
         posts.push(post);
-        console.dir(posts);
+        // console.dir(posts);
       }
       return(data);
     });
