@@ -51,7 +51,9 @@
     <main class="previews" ng-controller="GistController as gist">
       <article ng-repeat="g in gist.info">
         <h1><a href="{{g.url}}">{{g.title}}</a></h1>
-        <p>{{g.description}}</p>
+        <ul>
+          <li ng-repeat="file in g.files">{{file}}</li>
+        </ul>
         <img src="{{g.avatarSrc}}" height="50px" width="50px"/>
         <ul>
           <li>By {{g.author}}</li>
