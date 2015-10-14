@@ -30,7 +30,7 @@ require('angular-route');
           method: 'GET',
           url: 'https://api.github.com/users/mollyfish/gists',
           params: 'limit=10, sort_by=created:desc',
-          headers: {'Authorization': 'token '+ token}
+          headers: {'Authorization': 'token ' + part1 + part2}
       }).then(function(resp, err) {
         return resp.data;
       });
