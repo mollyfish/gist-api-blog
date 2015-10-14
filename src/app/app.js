@@ -44,8 +44,6 @@ require('angular-route');
     };
   });
 
-
-
   app.controller('GistListController', function($scope, dataService) {
     $scope.msg = 'GistListController hears you';
     dataService.getGistList().then(function(dataResponse) {
