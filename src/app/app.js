@@ -2,12 +2,24 @@ require('angular');
 require('angular-route');
 
 (function() {
-  var app = angular.module('blog',[]);
+  var app = angular.module('blog',['ngRoute']);
   var post;
   var posts = [];
   var data;
   var part1 = '9e036a59681409c5f542';
   var part2 = '72e86d69d37a005ad650';
+
+  app.config(function($routeProvider) {
+    $routeProvider
+    .when('/', {
+      templateUrl: 'views/gists/gist_preview.html',
+      controller: 'GistController'
+    })
+    .when('/details', {
+      templateUrl: 'views/gist/gist_detail.html',
+      controller: 'GistController'
+    });
+  });
 
   app.service('dataService', function($http) {
   delete $http.defaults.headers.common['X-Requested-With'];
@@ -25,8 +37,9 @@ require('angular-route');
 
   app.controller('GistController', function($scope, dataService) {
     dataService.getData().then(function(dataResponse) {
+      $scope.msg = 'GistController hears you';
       data = dataResponse;
-      console.dir(data);
+      // console.dir(data);
       for (var i = 0; i < data.length; i++) {
         post = {};
         post.url = data[i].html_url;
@@ -38,15 +51,20 @@ require('angular-route');
         post.files = [];
         for (file in data[i].files) {
           var filename = data[i].files[file].filename;
-          console.log(filename);
           post.files.push(filename);
         }
-        // console.dir(post.files);
         posts.push(post);
-        console.dir(posts);
       }
-      return(data);
+      console.dir(posts);
     });
     this.info = posts;
   });
+
+  // app.controller('DetailController', function($scope) {
+  //   $scope.msg = 'Details, details';
+  // });
+
+  
+
+  
 })();

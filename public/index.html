@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="stylesheet" href="styles/app.css">
   </head>
-  <body>
+  <body ng-controller="GistController">
     <header>
       <section>
         <h1>intelly</h1>
@@ -35,7 +35,7 @@
     </section>
     <nav class="secondary-nav">
       <div class="secondary-nav__justify-L">
-        <a href="#" onclick=printout()>Home</a>
+        <a href="#/">Home</a>
         <a href="#/">Blog</a>
       </div>
       <div class="secondary-nav__justify-R">
@@ -46,22 +46,21 @@
         <a href="http://www.pinterest.com" class="icon-pinterest secondary-nav__icon"></a>
       </div>
     </nav>
-    <!-- <main ng-view></main> -->
+    <!-- <p>{{msg}}</p> -->
+    <main ng-view></main>
     <script src="js/packed.js"></script>
-    <main class="previews" ng-controller="GistController as gist">
+    <!-- <main class="previews" ng-controller="GistController as gist">
       <article ng-repeat="g in gist.info">
+        <img src="{{g.avatarSrc}}" alt="Gist author avatar image"/>
         <h1><a href="{{g.url}}">{{g.title}}</a></h1>
-        <ul>
-          <li ng-repeat="file in g.files">{{file}}</li>
-        </ul>
-        <img src="{{g.avatarSrc}}" height="50px" width="50px"/>
-        <ul>
+        <ul class="post-data">
           <li>By {{g.author}}</li>
-          <li>Last updated on {{g.date | date: 'MMM dd, yyyy'}}</li>
-          <li>{{g.comments}} comments</li>
+          <li>Last update: {{g.date | date: "MMM dd, &#96;yy"}}</li>
+          <li class="comments">{{g.comments}} comment<span>s</span></li>
         </ul>
+        <a href="#" class="btn btn__text btn--dark">Details</a>
       </article>
-    </main>
+    </main> -->
 
 
 

@@ -1,0 +1,15 @@
+<section class="previews">
+  <p>{{msg}}</p>
+  <article ng-repeat="g in gist.info">
+    <img src="{{g.avatarSrc}}" alt="Gist author avatar image"/>
+    <h1><a href="{{g.url}}">{{g.title}}</a></h1>
+    <ul class="post-data">
+      <li>By {{g.author}}</li>
+      <li>Last update: {{g.date | date: "MMM dd, &#96;yy"}}</li>
+      <li class="comments">{{g.comments}} comment<span>s</span></li>
+    </ul>
+    <a href="#" class="btn btn__text btn--dark">Details</a>
+  </article>
+</section>
+
+

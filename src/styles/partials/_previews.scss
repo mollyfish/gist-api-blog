@@ -18,8 +18,24 @@
     line-height: 1.7;
     margin: 0 0 2em 0;
   }
-  .post-data {
-    @include flex-container(flex,row,wrap,space-between,center,center);
+  .gist-data {
+    @include flex-container(flex,row,wrap,flex-start,center,center);
+  }
+  .gist-files {
+    list-style-type: disc;
+    display: block;
+    li {
+      display: block;
+      &:before {
+        content: "";
+      }
+    }
+  }
+  img {
+    float: right;
+    height: 3em;
+    width: 3em;
+    border-radius: 0.25em;
   }
   .btn {
     width: 100%;
@@ -30,7 +46,7 @@
     }
     @include breaks(desktop) {
       width: 10em;
-      margin-top: 0;
+      margin-top: 1em;
     }
   }
   button[ng-click="vm.delete(post)"] {
