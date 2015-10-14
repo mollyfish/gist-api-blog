@@ -14,9 +14,9 @@ require('angular-route');
     $routeProvider
     .when('/', {
       templateUrl: 'views/gists/gist_preview.html',
-      controller: 'GistController'
+      controller: 'GistListController'
     })
-    .when('/details', {
+    .when('/details/:gist_id', {
       templateUrl: 'views/gist/gist_detail.html',
       controller: 'GistController'
     });
@@ -24,25 +24,41 @@ require('angular-route');
 
   app.service('dataService', function($http, token) {
   delete $http.defaults.headers.common['X-Requested-With'];
-  this.getData = function() {
+  this.getGistList = function() {
       return $http({
           method: 'GET',
           url: 'https://api.github.com/users/mollyfish/gists',
-          params: 'limit=10, sort_by=created:desc',
           headers: {'Authorization': 'token ' + part1 + part2}
       }).then(function(resp, err) {
         return resp.data;
       });
     }
+
+  this.getGistData = function (gistId) {
+    return $http({
+      method: 'GET',
+      url: 'https://api.github.com/gists/' + gistId,
+      headers: {'Authorization': 'token ' + part1 + part2}
+    });
+  };
   });
 
-  app.controller('GistController', function($scope, dataService) {
-    dataService.getData().then(function(dataResponse) {
-      $scope.msg = 'GistController hears you';
+  app.controller('GistController', function ($scope, $routeParams, dataService) {
+    $scope.msg = 'OHAI!';
+
+    dataService.getGistData($routeParams.gist_id).then(function(dataResponse) {
+      $scope.gist = dataResponse.data;
+    });
+  });
+
+  app.controller('GistListController', function($scope, dataService) {
+    dataService.getGistList().then(function(dataResponse) {
+      $scope.msg = 'GistListController hears you';
       data = dataResponse;
-      // console.dir(data);
+      console.dir("before for", data);
       for (var i = 0; i < data.length; i++) {
         post = {};
+        post.id = data[i].id;
         post.url = data[i].html_url;
         post.title = data[i].description;
         post.date = data[i].updated_at;
@@ -59,5 +75,5 @@ require('angular-route');
       console.dir(posts);
     });
     this.info = posts;
-  });  
+  });
 })();
