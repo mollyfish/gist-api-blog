@@ -2,7 +2,8 @@ require('angular');
 require('angular-route');
 
 (function() {
-  var app = angular.module('blog',['ngRoute']);
+  var app = angular.module('blog',['ngRoute', 'blog.config']);
+
   var post;
   var posts = [];
   var data;
@@ -21,14 +22,15 @@ require('angular-route');
     });
   });
 
-  app.service('dataService', function($http) {
+
+  app.service('dataService', function($http, token) {
   delete $http.defaults.headers.common['X-Requested-With'];
   this.getData = function() {
       return $http({
           method: 'GET',
           url: 'https://api.github.com/users/mollyfish/gists',
           params: 'limit=10, sort_by=created:desc',
-          headers: {'Authorization': 'token '+ part1 + part2}
+          headers: {'Authorization': 'token '+ token}
       }).then(function(resp, err) {
         return resp.data;
       });

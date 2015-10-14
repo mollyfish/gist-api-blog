@@ -5,3 +5,4 @@ node_modules/
 /public/app.css
 /public/views/
 key.txt
+src/app/token.js
