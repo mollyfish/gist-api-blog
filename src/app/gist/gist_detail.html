@@ -1,17 +1,13 @@
 <section class="detail">
-  <p>message! {{msg}}</p>
-  <pre>{{gist|json}}</pre>
-  <article ng-repeat="g in gist.info">
-    <img src="{{g.avatarSrc}}" alt="Gist author avatar image"/>
-    <h1><a href="{{g.url}}">{{g.title}}</a></h1>
+    <img src="{{gist.owner.avatar_url}}" alt="Gist author avatar image"/>
+    <h1><a href="{{gist.url}}">{{g.descrption}}</a></h1>
     <ul class="gist-files">
-      <li ng-repeat="file in g.files">{{file}}</li>
+      <li ng-repeat="file in gist.files">{{file.filename}}</li>
     </ul>
     <ul class="gist-data">
-      <li>By {{g.author}}</li>
-      <li>Last update: {{g.date | date: "MMM dd, &#96;yy"}}</li>
-      <li class="comments">{{g.comments}} comment<span>s</span></li>
+      <li>By {{gist.owner.login}}</li>
+      <li>Last update: {{gist.updated_at | date: "MMM dd, &#96;yy"}}</li>
+      <li class="comments">{{gist.comments}} comment<span>s</span></li>
     </ul>
-    <a href="#/gists/{{gist._id}}" class="btn btn__text btn--dark">Details</a>
   </article>
 </section>
