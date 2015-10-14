@@ -50,11 +50,13 @@
     <script src="js/packed.js"></script>
     <main class="previews" ng-controller="GistController as gist">
       <article ng-repeat="g in gist.info">
-        <h1>{{g.title}}</h1>
+        <h1><a href="{{g.url}}">{{g.title}}</a></h1>
         <p>{{g.description}}</p>
+        <img src="{{g.avatarSrc}}" height="50px" width="50px"/>
         <ul>
           <li>By {{g.author}}</li>
           <li>Last updated on {{g.date | date: 'MMM dd, yyyy'}}</li>
+          <li>{{g.comments}} comments</li>
         </ul>
       </article>
     </main>
