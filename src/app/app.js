@@ -22,7 +22,6 @@ require('angular-route');
     });
   });
 
-
   app.service('dataService', function($http, token) {
   delete $http.defaults.headers.common['X-Requested-With'];
   this.getData = function() {
@@ -60,13 +59,5 @@ require('angular-route');
       console.dir(posts);
     });
     this.info = posts;
-  });
-
-  // app.controller('DetailController', function($scope) {
-  //   $scope.msg = 'Details, details';
-  // });
-
-  
-
-  
+  });  
 })();
