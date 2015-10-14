@@ -25,18 +25,26 @@ require('angular-route');
 
   app.controller('GistController', function($scope, dataService) {
     dataService.getData().then(function(dataResponse) {
-      var data = dataResponse;
+      data = dataResponse;
+      console.dir(data);
       for (var i = 0; i < data.length; i++) {
         post = {};
-        post.description = data[i].description;
+        post.url = data[i].html_url;
+        post.title = data[i].description;
         post.date = data[i].updated_at;
         post.author = data[i].owner.login;
+        post.avatarSrc = data[i].owner.avatar_url;
+        post.comments = parseInt(data[i].comments);
+        post.files = [];
         for (file in data[i].files) {
-          post.title = data[i].files[file].filename;
+          var filename = data[i].files[file].filename;
+          console.log(filename);
+          post.files.push(filename);
         }
+        // console.dir(post.files);
         posts.push(post);
+        console.dir(posts);
       }
-      console.dir(posts);
       return(data);
     });
     this.info = posts;
