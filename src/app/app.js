@@ -26,7 +26,7 @@ require('angular-route');
   app.controller('GistController', function($scope, dataService) {
     dataService.getData().then(function(dataResponse) {
       data = dataResponse;
-      console.dir(data);
+      // console.dir(data);
       for (var i = 0; i < data.length; i++) {
         post = {};
         post.url = data[i].html_url;
@@ -43,9 +43,8 @@ require('angular-route');
         }
         // console.dir(post.files);
         posts.push(post);
-        // console.dir(posts);
       }
-      return(data);
+      console.dir(posts);
     });
     this.info = posts;
   });
