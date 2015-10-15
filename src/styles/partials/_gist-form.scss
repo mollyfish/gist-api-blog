@@ -8,6 +8,15 @@
     font-size: 200%;
     margin-bottom: 1em;
   }
+  p {
+    font-family: $main-font-bold;
+  }
+  ul {
+    margin: 0.25em 0 1em 0;
+    li {
+      margin: 0 0 0.25em 0.5em;
+    }
+  }
   .btn {
     width: 100%;
     margin-top: 1em;
@@ -17,6 +26,7 @@
   }
   textarea {
     width: 100%;
+    margin-bottom: 1em;
   }
   input {
     margin-bottom: 1em;
