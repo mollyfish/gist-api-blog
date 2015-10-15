@@ -83,7 +83,7 @@ require('angular-route');
     $scope.msg = 'OHAI!';
     dataService.getGistData($routeParams.g_id).then(function(dataResponse) {
       $scope.gist = dataResponse.data; 
-      console.dir($scope.gist);     
+      // console.dir($scope.gist);     
     });
   });
 
@@ -91,7 +91,6 @@ require('angular-route');
     $scope.msg = 'I is here!';
     dataService.deleteGist($routeParams.g_id).then(function(dataResponse) {
       $location.path("/");
-      // $scope.gist = dataResponse.data;      
     });
   });
 
@@ -114,12 +113,11 @@ require('angular-route');
 
     function saveNewForm () {
       console.log('saveNew has fired');
-      $scope.gist.description = document.getElementById('description').value;
       var filename = document.getElementById('filename').value;
       var content1 = document.getElementById('content1').value;
+      $scope.gist.description = document.getElementById('description').value;
       $scope.gist.files = {};
       $scope.gist.files[filename] = {content: content1, filename: filename + '.txt'}; 
-      
       newGist = {
         "description": $scope.gist.description,
         "public": true,
@@ -128,20 +126,28 @@ require('angular-route');
       var method = $routeParams.g_id ? "updateGist" : "createNewGist";
       dataService[method](newGist, $routeParams.g_id).then(function (resp) {
         $location.path("/detail/" + resp.data.id); //Bad property name '_id'.
-        console.log(resp.data.id);
-        console.log(resp);
+        // console.log(resp.data.id);
+        // console.log(resp);
       });
     }
 
     function saveEditsForm () {
       console.log('saveEdits has fired');
-
-
-      $scope.gist.description = document.getElementById('description').value;
+      newGist = $scope.gist;
+      console.dir(newGist.files);
+      var filename = document.getElementById('filename').value;
       $scope.gist.updatedContent = document.getElementById('updContent').value;
-      $scope.gist.newFilename = document.getElementById('filename').value;
-      $scope.gist.modContent = document.getElementById('modContent').value;
-      $scope.gist.newContent = document.getElementById('newContent').value;
+      $scope.gist.files[filename] = {content: $scope.gist.updatedContent, filename: filename + '.txt'};
+      newGist = {
+        "description": $scope.gist.description,
+        "public": true,
+        "files": $scope.gist.files
+      };
+      // $scope.gist.description = document.getElementById('description').value;
+      
+      // $scope.gist.newFilename = document.getElementById('filename').value;
+      // $scope.gist.modContent = document.getElementById('modContent').value;
+      // $scope.gist.newContent = document.getElementById('newContent').value;
       // newGist = { 
       //   "description": $scope.gist.description,
       //   "files": {
@@ -162,10 +168,10 @@ require('angular-route');
       //   }
       // };
       var method = $routeParams.g_id ? "updateGist" : "createNewGist";
-      dataService[method]($routeParams.g_id).then(function (resp) {
-        $location.path("/gists/" + $routeParams.g_id);
+      dataService[method](newGist, $routeParams.g_id).then(function (resp) {
+        $location.path("/detail/" + $routeParams.g_id);
         // console.log(resp.data.id);
-        console.log(resp);
+        // console.log(resp);
       });
     }
 

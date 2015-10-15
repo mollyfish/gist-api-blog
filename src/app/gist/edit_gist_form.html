@@ -8,20 +8,21 @@
   <label>Description for this Gist:</label>
   <input type="text" placeholder="Description" ng-model="gist.description" id="description">
 
-  <label>Updated file content:</label>
-  <textarea form="edit-gist" ng-model="gist.updatedContent" id="updContent" rows="5" cols="65"></textarea>
-  <!-- This updated the content of file1.txt -->
-
-  <label>New file name (including extension):</label>
-  <input type="text" placeholder="filename" ng-model="gist.newFilename" id="filename">
+  <label>File contents:</label>
+  <div ng-repeat="file in gist.files">
+    <p>{{file.filename}}</p>
+    <textarea form="edit-gist" id="updContent" rows="5" cols="65">{{file.content}}</textarea>
+  </div>
+  <label>File names:</label>
+  <input type="text" ng-repeat="file in gist.files" placeholder="{{file.filename}}" id="filename">
   <!-- This made a new file with this filename -->
 
-  <label>Modified file contents:</label>
-  <textarea form="edit-gist" ng-model="gist.modContent" id="modContent" rows="5" cols="65"></textarea>
+  <!-- <label>Modified file contents:</label>
+  <textarea form="edit-gist" ng-model="gist.modContent" id="modContent" rows="5" cols="65"></textarea> -->
   <!-- This added content to the new file from above -->
 
-  <label>New file contents:</label>
-  <textarea form="edit-gist" ng-model="gist.newContent" id="newContent" rows="5" cols="65"></textarea>
+  <!-- <label>New file contents:</label>
+  <textarea form="edit-gist" ng-model="gist.newContent" id="newContent" rows="5" cols="65"></textarea> -->
   <!-- This was new file content, but required a filename in the New File Name field to post properly -->
 
   <button type="submit" name="Submit" class="btn btn__text btn--dark">Submit</button>
