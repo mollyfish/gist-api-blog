@@ -1,10 +1,9 @@
-<form class="gist-form" id="add-gist" role="form" ng-submit="createNewGist()">
-  <h1>Add a new Gist:</h1>
+<form class="gist-form" id="add-gist" ng-submit="save()">
   <label>Description:</label>
-  <input type="text" placeholder="description" ng-model="description" id="description" value="can you hear me">
+  <input type="text" placeholder="description" ng-model="gist.description" id="description" value="description was left blank">
   <label>File name:</label>
-  <input type="text" placeholder="filename" ng-model="filename" id="filename" value="who's on first">
+  <input type="text" placeholder="filename" ng-model="gist.filename" id="filename" value="filename was left blank">
   <label>File content:</label>
-  <textarea form="add-gist" ng-model="content" id="content" rows="5" cols="65">File contents</textarea>
-  <button type="submit" class="btn btn__text btn--dark">Submit</button>
+  <textarea form="add-gist" ng-model="gist.content" id="content" rows="5" cols="65">File content was left blank</textarea>
+  <button type="submit" name="Submit" class="btn btn__text btn--dark">Submit</button>
 </form>

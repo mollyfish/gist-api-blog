@@ -1,14 +1,13 @@
 require('angular');
 require('angular-route');
 
-(function() {
+(function () {
+  'use strict';
   var app = angular.module('blog',['ngRoute', 'blog.config']);
-
-  var post;
-  var posts = [];
-  var data;
+  // var data;
   var part1 = '9e036a59681409c5f542';
   var part2 = '72e86d69d37a005ad650';
+  var newGist = {};
 
   app.config(function($routeProvider) {
     $routeProvider
@@ -19,6 +18,10 @@ require('angular-route');
     .when('/detail/:g_id', {
       templateUrl: 'views/gist/gist_detail.html',
       controller: 'GistController'
+    })
+    .when('/new/:g_id/edit', {
+      templateUrl: 'views/gist/gist_form.html',
+      controller: 'GistFormController'
     })
     .when('/new', {
       templateUrl: 'views/gist/gist_form.html',
@@ -36,7 +39,7 @@ require('angular-route');
         }).then(function(resp, err) {
           return resp.data;
         });
-      }
+      };
 
     this.getGistData = function (gistId) {
       return $http({
@@ -47,16 +50,20 @@ require('angular-route');
     };
 
     this.createNewGist = function() {
-      console.log('new gist has fired');
-    //   var res = $http.post('https://api.github.com/gists/', newGist, headers: { 'Authorization': 'token ' + part1 + part2 });
+      var res = $http.post('https://api.github.com/gists/', newGist, {
+        headers: { 'Authorization': 'token ' + part1 + part2 }
+      });
+      res.success(function(data, status, headers, config) {
+        $scope.message = data;
+      });
+      res.error(function(data, status, headers, config) {
+        alert( "failure message: " + JSON.stringify({data: data}));
+      });
+    };
 
-    //   res.success(function(data, status, headers, config) {
-    //     $scope.message = data;
-    //   });
-    //   res.error(function(data, status, headers, config) {
-    //     alert( "failure message: " + JSON.stringify({data: data}));
-    //   });
-    }
+    this.updateGist = function (gistId) {
+      return $http.put('http://localhost:9000/#/detail/' + gistId);
+    };
   });
 
   app.controller('GistListController', function($scope, dataService) {
@@ -73,22 +80,41 @@ require('angular-route');
     });
   });
 
-  app.controller('GistFormController', function($scope, dataService) {
-    $scope.msg = 'A form!  Sa-weet!';
-    $scope.submit = dataService.createNewGist().then(function(){
-      console.log('submission');
-    });
-    var newGistDesc = document.getElementById('description').value;
-    var newGistFilename = document.getElementById('filename').value;
-    var newGistFileContent = document.getElementById('content').value;
-    console.log(newGistDesc);
-    console.log(newGistFilename);
-    console.log(newGistFileContent);
-    var newGist = { "description": newGistDesc,
-      "public": true,
-      "files": {
-        newGistFilename: { "content": newGistFileContent }
+  app.controller("GistFormController", ['$scope', "dataService", "$routeParams", "$location", function ($scope, dataService, $routeParams, $location) {
+
+    $scope.save = saveForm;  //'saveForm' is out of scope.
+
+    $scope.gist = {};
+
+    initialize();  //'initialize' is out of scope.
+
+    function initialize () {
+      if ($routeParams.g_id) {
+        dataService.getGistData($routeParams.g_id).then(function (resp) {
+          $scope.gist = resp.data;
+        });
       }
-    };
-  });
+    }
+
+    function saveForm () {
+      console.log('saveForm has fired');
+      
+      $scope.gist.description = document.getElementById('description').value;
+      $scope.gist.fileName = document.getElementById('filename').value;
+      $scope.gist.fileContent = document.getElementById('content').value;
+      newGist = { "description": $scope.gist.description,
+        "public": true,
+        "files": {
+          "newfile-1.txt": {
+            "filename": $scope.gist.fileName,
+            "content": $scope.gist.fileContent
+          }
+        }
+      };
+      var method = $routeParams.g_id ? "updateGist(g_id)" : "createNewGist";
+      dataService[method]($scope.gist).then(function (resp) {
+        $location.path("/gists/" + resp.data._id); //Bad property name '_id'.
+      });
+    }
+  }]);
 })();

@@ -1,5 +1,4 @@
 <section class="previews">
-  
   <article ng-repeat="g in gist">
     <img src="{{g.owner.avatar_url}}" alt="Gist author avatar image"/>
     <h1><a href="{{g.url}}">{{g.description}}</a></h1>
@@ -11,6 +10,7 @@
     <p></p>
     <a href="#/detail/{{g.id}}" class="btn btn__text btn--dark">Details</a>
   </article>
+  <a href="#/new/" class="btn btn__text btn--light">Add Gist</a>
 </section>
 
 
