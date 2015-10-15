@@ -16,10 +16,13 @@ require('angular-route');
       templateUrl: 'views/gists/gist_preview.html',
       controller: 'GistListController'
     })
-
     .when('/detail/:g_id', {
       templateUrl: 'views/gist/gist_detail.html',
       controller: 'GistController'
+    })
+    .when('/new', {
+      templateUrl: 'views/gist/gist_form.html',
+      controller: 'GistFormController'
     });
   });
 
@@ -42,6 +45,18 @@ require('angular-route');
         headers: {'Authorization': 'token ' + part1 + part2}
       });
     };
+
+    this.createNewGist = function() {
+      console.log('new gist has fired');
+    //   var res = $http.post('https://api.github.com/gists/', newGist, headers: { 'Authorization': 'token ' + part1 + part2 });
+
+    //   res.success(function(data, status, headers, config) {
+    //     $scope.message = data;
+    //   });
+    //   res.error(function(data, status, headers, config) {
+    //     alert( "failure message: " + JSON.stringify({data: data}));
+    //   });
+    }
   });
 
   app.controller('GistListController', function($scope, dataService) {
@@ -56,5 +71,24 @@ require('angular-route');
     dataService.getGistData($routeParams.g_id).then(function(dataResponse) {
       $scope.gist = dataResponse.data;      
     });
+  });
+
+  app.controller('GistFormController', function($scope, dataService) {
+    $scope.msg = 'A form!  Sa-weet!';
+    $scope.submit = dataService.createNewGist().then(function(){
+      console.log('submission');
+    });
+    var newGistDesc = document.getElementById('description').value;
+    var newGistFilename = document.getElementById('filename').value;
+    var newGistFileContent = document.getElementById('content').value;
+    console.log(newGistDesc);
+    console.log(newGistFilename);
+    console.log(newGistFileContent);
+    var newGist = { "description": newGistDesc,
+      "public": true,
+      "files": {
+        newGistFilename: { "content": newGistFileContent }
+      }
+    };
   });
 })();

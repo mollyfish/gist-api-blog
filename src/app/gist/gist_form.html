@@ -1,0 +1,10 @@
+<form class="gist-form" id="add-gist" role="form" ng-submit="createNewGist()">
+  <h1>Add a new Gist:</h1>
+  <label>Description:</label>
+  <input type="text" placeholder="description" ng-model="description" id="description" value="can you hear me">
+  <label>File name:</label>
+  <input type="text" placeholder="filename" ng-model="filename" id="filename" value="who's on first">
+  <label>File content:</label>
+  <textarea form="add-gist" ng-model="content" id="content" rows="5" cols="65">File contents</textarea>
+  <button type="submit" class="btn btn__text btn--dark">Submit</button>
+</form>
