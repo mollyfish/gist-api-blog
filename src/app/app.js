@@ -4,7 +4,6 @@ require('angular-route');
 (function () {
   'use strict';
   var app = angular.module('blog',['ngRoute', 'blog.config']);
-  // var data;
   var part1 = '9e036a59681409c5f542';
   var part2 = '72e86d69d37a005ad650';
   var newGist = {};
@@ -83,7 +82,6 @@ require('angular-route');
     $scope.msg = 'OHAI!';
     dataService.getGistData($routeParams.g_id).then(function(dataResponse) {
       $scope.gist = dataResponse.data; 
-      // console.dir($scope.gist);     
     });
   });
 
@@ -97,11 +95,11 @@ require('angular-route');
   app.controller("GistFormController", ['$scope', "dataService", "$routeParams", "$location", function ($scope, dataService, $routeParams, $location) {
 
     $scope.saveNew = saveNewForm;
-    $scope.saveEdits = saveEditsForm;  //'saveForm' is out of scope.
+    $scope.saveEdits = saveEditsForm;
 
     $scope.gist = {};
 
-    initialize();  //'initialize' is out of scope.
+    initialize();
 
     function initialize () {
       if ($routeParams.g_id) {
@@ -126,8 +124,6 @@ require('angular-route');
       var method = $routeParams.g_id ? "updateGist" : "createNewGist";
       dataService[method](newGist, $routeParams.g_id).then(function (resp) {
         $location.path("/detail/" + resp.data.id); //Bad property name '_id'.
-        // console.log(resp.data.id);
-        // console.log(resp);
       });
     }
 
@@ -143,37 +139,10 @@ require('angular-route');
         "public": true,
         "files": $scope.gist.files
       };
-      // $scope.gist.description = document.getElementById('description').value;
-      
-      // $scope.gist.newFilename = document.getElementById('filename').value;
-      // $scope.gist.modContent = document.getElementById('modContent').value;
-      // $scope.gist.newContent = document.getElementById('newContent').value;
-      // newGist = { 
-      //   "description": $scope.gist.description,
-      //   "files": {
-
-      //     // "file1.txt": {
-      //     //   "content": $scope.gist.updatedContent },
-
-      //     // "old_name.txt": {
-      //     //   "filename": $scope.gist.newFilename,
-      //     //   "content": $scope.gist.modContent
-      //     // },
-
-      //     // "new_file.txt": {
-      //     //   "content": $scope.gist.newContent
-      //     // },
-
-      //     "delete_this_file.txt": null
-      //   }
-      // };
       var method = $routeParams.g_id ? "updateGist" : "createNewGist";
       dataService[method](newGist, $routeParams.g_id).then(function (resp) {
         $location.path("/detail/" + $routeParams.g_id);
-        // console.log(resp.data.id);
-        // console.log(resp);
       });
     }
-
   }]);
 })();
