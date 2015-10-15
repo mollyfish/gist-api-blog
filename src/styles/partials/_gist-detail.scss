@@ -1,5 +1,4 @@
-.post-detail {
-  @include flex-container(flex,column,nowrap,flex-start,flex-start,flex-start);
+.gist-detail {
   margin: 0 20% 2em 20%;
   padding: 2em 0;
   text-align: left;
@@ -8,19 +7,39 @@
     border-bottom: 1px solid $border-color-med;
     padding: 2em 0;
   }
+  strong {
+    font-family: $main-font-bold;
+    margin-bottom: 0.5em;
+  }
   h1 {
     font-family: $main-font-regular;
     font-size: 200%;
-    margin-bottom: 1em;
+    margin: 0 0 1em 0.5em;
   }
   p {
     font-family: $main-font-regular;
     font-size: 100%;
     line-height: 1.7;
-    margin: 1em 0 2em 0;
+    margin: 0 0 1em 0;
   }
-  .post-data {
-    @include flex-container(flex,row,wrap,space-between,center,center);
+  .gist-files {
+    list-style-type: disc;
+    display: block;
+    li {
+      display: block;
+      &:before {
+        content: "";
+      }
+    }
+  }
+  .gist-data {
+    @include flex-container(flex,row,wrap,flex-start,center,center);
+  }
+  img {
+    float: right;
+    height: 8em;
+    width: 8em;
+    border-radius: 0.25em;
   }
   .btn {
     width: 100%;
