@@ -102,6 +102,8 @@ require('angular-route');
     initialize();
 
     function initialize () {
+      newGist = {};
+      $scope.gist.files = {};
       if ($routeParams.g_id) {
         dataService.getGistData($routeParams.g_id).then(function (resp) {
           $scope.gist = resp.data;
@@ -110,7 +112,7 @@ require('angular-route');
     }
 
     function saveNewForm () {
-      console.log('saveNew has fired');
+      // newGist = {};
       var filename = document.getElementById('filename').value;
       var content1 = document.getElementById('content1').value;
       $scope.gist.description = document.getElementById('description').value;
@@ -123,17 +125,20 @@ require('angular-route');
       };
       var method = $routeParams.g_id ? "updateGist" : "createNewGist";
       dataService[method](newGist, $routeParams.g_id).then(function (resp) {
-        $location.path("/detail/" + resp.data.id); //Bad property name '_id'.
+        $location.path("/detail/" + resp.data.id);
       });
     }
 
     function saveEditsForm () {
-      console.log('saveEdits has fired');
       newGist = $scope.gist;
-      console.dir(newGist.files);
       var filename = document.getElementById('filename').value;
-      $scope.gist.updatedContent = document.getElementById('updContent').value;
-      $scope.gist.files[filename] = {content: $scope.gist.updatedContent, filename: filename + '.txt'};
+      $scope.gist.content = document.getElementById('content').value;
+      console.dir($scope.gist.files);
+      for (var file in $scope.gist.files) {
+        console.dir(file["content"]);
+        file = {content: $scope.gist.content, filename: filename};
+      }
+      $scope.gist.files[filename] = {content: $scope.gist.content, filename: filename};
       newGist = {
         "description": $scope.gist.description,
         "public": true,

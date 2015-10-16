@@ -9,7 +9,7 @@
   <label>File contents:</label>
   <div ng-repeat="file in gist.files">
     <p>{{file.filename}}</p>
-    <textarea form="edit-gist" id="updContent" rows="5" cols="65">{{file.content}}</textarea>
+    <textarea form="edit-gist" id="content" rows="5" cols="65">{{file.content}}</textarea>
   </div>
   <label>File names:</label>
   <input type="text" ng-repeat="file in gist.files" placeholder="{{file.filename}}" id="filename">
